@@ -239,6 +239,7 @@ server <- function(input, output, session) {
         # is game over?
         ######## Deuce Logic ########
         if ((mtch$pts[mtch$srv] == 4) & (mtch$pts[mtch$srv] - mtch$pts[mtch$rtn] >= 2)) {
+          print('here')
           mtch$gms[mtch$srv] <- mtch$gms[mtch$srv] + 1
           mtch$setGms[mtch$s, mtch$srv] <- mtch$setGms[mtch$s, mtch$srv] + 1
           mtch$pts <- c(0, 0)
