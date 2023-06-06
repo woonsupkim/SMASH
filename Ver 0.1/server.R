@@ -238,47 +238,62 @@ server <- function(input, output, session) {
         
         # is game over?
         ######## Deuce Logic ########
-        if (((mtch$pts[mtch$srv] == 4) && (mtch$pts[mtch$srv] - mtch$pts[mtch$rtn] > 2)) 
-            | ((mtch$pts[mtch$rtn] == 4) && (mtch$pts[mtch$rtn] - mtch$pts[mtch$srv] > 2))) 
-        {
-          gOver <- TRUE
-        } 
-        ####################################
-        
-        else if (mtch$pts[mtch$srv] == 4) {
+        if ((mtch$pts[mtch$srv] == 4) && (mtch$pts[mtch$srv] - mtch$pts[mtch$rtn] > 2)) {
           mtch$gms[mtch$srv] <- mtch$gms[mtch$srv] + 1
           mtch$setGms[mtch$s, mtch$srv] <- mtch$setGms[mtch$s, mtch$srv] + 1
           mtch$pts <- c(0, 0)
           gOver <- TRUE
-        } else if (mtch$pts[mtch$rtn] == 4) {
+        }
+        else if ((mtch$pts[mtch$rtn] == 4) && (mtch$pts[mtch$rtn] - mtch$pts[mtch$srv] > 2))  {
           mtch$gms[mtch$rtn] <- mtch$gms[mtch$rtn] + 1
           mtch$setGms[mtch$s, mtch$rtn] <- mtch$setGms[mtch$s, mtch$rtn] + 1
           mtch$pts <- c(0, 0)
           gOver <- TRUE
         }
+        ####################################
+       
+        # else if (mtch$pts[mtch$srv] == 4) {
+        #   mtch$gms[mtch$srv] <- mtch$gms[mtch$srv] + 1
+        #   mtch$setGms[mtch$s, mtch$srv] <- mtch$setGms[mtch$s, mtch$srv] + 1
+        #   mtch$pts <- c(0, 0)
+        #   gOver <- TRUE
+        # } else if (mtch$pts[mtch$rtn] == 4) {
+        #   mtch$gms[mtch$rtn] <- mtch$gms[mtch$rtn] + 1
+        #   mtch$setGms[mtch$s, mtch$rtn] <- mtch$setGms[mtch$s, mtch$rtn] + 1
+        #   mtch$pts <- c(0, 0)
+        #   gOver <- TRUE
+        # }
         
         # is set over?
         if (gOver) {
           ######## Tie Breaking Logic ########
-          if (((mtch$gms[mtch$srv] == 6) && (mtch$gms[mtch$srv] - mtch$gms[mtch$rtn] > 2)) 
-              | ((mtch$gms[mtch$rtn] == 6) && (mtch$gms[mtch$rtn] - mtch$gms[mtch$srv] > 2))) 
-          {
-            sOver <- FALSE
-          } 
-          ####################################
-          
-            
-          else if (mtch$gms[mtch$srv] == 6) {
+          if ((mtch$gms[mtch$srv] == 6) && (mtch$gms[mtch$srv] - mtch$gms[mtch$rtn] > 2)){
             mtch$sts[mtch$srv] <- mtch$sts[mtch$srv] + 1
             mtch$gms <- c(0, 0)
             mtch$s <- mtch$s + 1
             sOver <- TRUE
-          } else if (mtch$gms[mtch$rtn] == 6) {
+          }
+              
+          else if ((mtch$gms[mtch$rtn] == 6) && (mtch$gms[mtch$rtn] - mtch$gms[mtch$srv] > 2)){
             mtch$sts[mtch$rtn] <- mtch$sts[mtch$rtn] + 1
             mtch$gms <- c(0, 0)
             mtch$s <- mtch$s + 1
             sOver <- TRUE
           }
+          ####################################
+          
+            
+          # else if (mtch$gms[mtch$srv] == 6) {
+          #   mtch$sts[mtch$srv] <- mtch$sts[mtch$srv] + 1
+          #   mtch$gms <- c(0, 0)
+          #   mtch$s <- mtch$s + 1
+          #   sOver <- TRUE
+          # } else if (mtch$gms[mtch$rtn] == 6) {
+          #   mtch$sts[mtch$rtn] <- mtch$sts[mtch$rtn] + 1
+          #   mtch$gms <- c(0, 0)
+          #   mtch$s <- mtch$s + 1
+          #   sOver <- TRUE
+          # }
 
         }
         
