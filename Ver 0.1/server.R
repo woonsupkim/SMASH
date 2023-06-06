@@ -249,7 +249,7 @@ server <- function(input, output, session) {
           mtch$setGms[mtch$s, mtch$rtn] <- mtch$setGms[mtch$s, mtch$rtn] + 1
           mtch$pts <- c(0, 0)
           gOver <- TRUE
-        # }
+        }
         ####################################
        
         # if (mtch$pts[mtch$srv] == 4) {
