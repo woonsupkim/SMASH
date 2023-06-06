@@ -237,7 +237,15 @@ server <- function(input, output, session) {
         }
         
         # is game over?
-        if (mtch$pts[mtch$srv] == 4) {
+        ######## Deuce Logic ########
+        if (((mtch$gms[mtch$srv] == 6) && (mtch$gms[mtch$srv] - mtch$gms[mtch$rtn] < 2)) 
+            | ((player2_score == 6) && (player2_score - player1_score < 2))) 
+        {
+          sOver <- FALSE
+        } 
+        ####################################
+        
+        else if (mtch$pts[mtch$srv] == 4) {
           mtch$gms[mtch$srv] <- mtch$gms[mtch$srv] + 1
           mtch$setGms[mtch$s, mtch$srv] <- mtch$setGms[mtch$s, mtch$srv] + 1
           mtch$pts <- c(0, 0)
@@ -251,7 +259,17 @@ server <- function(input, output, session) {
         
         # is set over?
         if (gOver) {
-          if (mtch$gms[mtch$srv] == 6) {
+          ######## Tie Breaking Logic ########
+          
+          if (((mtch$gms[mtch$srv] == 6) && (mtch$gms[mtch$srv] - mtch$gms[mtch$rtn] < 2)) 
+              | ((player2_score == 6) && (player2_score - player1_score < 2))) 
+          {
+            sOver <- FALSE
+          } 
+          ####################################
+          
+            
+          else if (mtch$gms[mtch$srv] == 6) {
             mtch$sts[mtch$srv] <- mtch$sts[mtch$srv] + 1
             mtch$gms <- c(0, 0)
             mtch$s <- mtch$s + 1
@@ -262,6 +280,7 @@ server <- function(input, output, session) {
             mtch$s <- mtch$s + 1
             sOver <- TRUE
           }
+
         }
         
         # is match over?
