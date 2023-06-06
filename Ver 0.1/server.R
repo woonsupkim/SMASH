@@ -266,34 +266,34 @@ server <- function(input, output, session) {
         
         # is set over?
         if (gOver) {
-          ######## Tie Breaking Logic ########
-          if ((mtch$gms[mtch$srv] == 6) && (mtch$gms[mtch$srv] - mtch$gms[mtch$rtn] > 2)){
-            mtch$sts[mtch$srv] <- mtch$sts[mtch$srv] + 1
-            mtch$gms <- c(0, 0)
-            mtch$s <- mtch$s + 1
-            sOver <- TRUE
-          }
-              
-          else if ((mtch$gms[mtch$rtn] == 6) && (mtch$gms[mtch$rtn] - mtch$gms[mtch$srv] > 2)){
-            mtch$sts[mtch$rtn] <- mtch$sts[mtch$rtn] + 1
-            mtch$gms <- c(0, 0)
-            mtch$s <- mtch$s + 1
-            sOver <- TRUE
-          }
-          ####################################
-          
-            
-          # else if (mtch$gms[mtch$srv] == 6) {
+          # ######## Tie Breaking Logic ########
+          # if ((mtch$gms[mtch$srv] == 6) && (mtch$gms[mtch$srv] - mtch$gms[mtch$rtn] > 2)){
           #   mtch$sts[mtch$srv] <- mtch$sts[mtch$srv] + 1
           #   mtch$gms <- c(0, 0)
           #   mtch$s <- mtch$s + 1
           #   sOver <- TRUE
-          # } else if (mtch$gms[mtch$rtn] == 6) {
+          # }
+          #     
+          # else if ((mtch$gms[mtch$rtn] == 6) && (mtch$gms[mtch$rtn] - mtch$gms[mtch$srv] > 2)){
           #   mtch$sts[mtch$rtn] <- mtch$sts[mtch$rtn] + 1
           #   mtch$gms <- c(0, 0)
           #   mtch$s <- mtch$s + 1
           #   sOver <- TRUE
           # }
+          # ####################################
+          
+            
+          if (mtch$gms[mtch$srv] == 6) {
+            mtch$sts[mtch$srv] <- mtch$sts[mtch$srv] + 1
+            mtch$gms <- c(0, 0)
+            mtch$s <- mtch$s + 1
+            sOver <- TRUE
+          } else if (mtch$gms[mtch$rtn] == 6) {
+            mtch$sts[mtch$rtn] <- mtch$sts[mtch$rtn] + 1
+            mtch$gms <- c(0, 0)
+            mtch$s <- mtch$s + 1
+            sOver <- TRUE
+          }
 
         }
         
