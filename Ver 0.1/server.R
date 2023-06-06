@@ -238,31 +238,31 @@ server <- function(input, output, session) {
         
         # is game over?
         ######## Deuce Logic ########
-        # if ((mtch$pts[mtch$srv] == 4) && (mtch$pts[mtch$srv] - mtch$pts[mtch$rtn] > 2)) {
-        #   mtch$gms[mtch$srv] <- mtch$gms[mtch$srv] + 1
-        #   mtch$setGms[mtch$s, mtch$srv] <- mtch$setGms[mtch$s, mtch$srv] + 1
-        #   mtch$pts <- c(0, 0)
-        #   gOver <- TRUE
-        # }
-        # else if ((mtch$pts[mtch$rtn] == 4) && (mtch$pts[mtch$rtn] - mtch$pts[mtch$srv] > 2))  {
-        #   mtch$gms[mtch$rtn] <- mtch$gms[mtch$rtn] + 1
-        #   mtch$setGms[mtch$s, mtch$rtn] <- mtch$setGms[mtch$s, mtch$rtn] + 1
-        #   mtch$pts <- c(0, 0)
-        #   gOver <- TRUE
-        # }
-        ####################################
-       
-        if (mtch$pts[mtch$srv] == 4) {
+        if ((mtch$pts[mtch$srv] == 4) && (mtch$pts[mtch$srv] - mtch$pts[mtch$rtn] >= 2)) {
           mtch$gms[mtch$srv] <- mtch$gms[mtch$srv] + 1
           mtch$setGms[mtch$s, mtch$srv] <- mtch$setGms[mtch$s, mtch$srv] + 1
           mtch$pts <- c(0, 0)
           gOver <- TRUE
-        } else if (mtch$pts[mtch$rtn] == 4) {
+        }
+        else if ((mtch$pts[mtch$rtn] == 4) && (mtch$pts[mtch$rtn] - mtch$pts[mtch$srv] >= 2))  {
           mtch$gms[mtch$rtn] <- mtch$gms[mtch$rtn] + 1
           mtch$setGms[mtch$s, mtch$rtn] <- mtch$setGms[mtch$s, mtch$rtn] + 1
           mtch$pts <- c(0, 0)
           gOver <- TRUE
         }
+        ####################################
+       
+        # if (mtch$pts[mtch$srv] == 4) {
+        #   mtch$gms[mtch$srv] <- mtch$gms[mtch$srv] + 1
+        #   mtch$setGms[mtch$s, mtch$srv] <- mtch$setGms[mtch$s, mtch$srv] + 1
+        #   mtch$pts <- c(0, 0)
+        #   gOver <- TRUE
+        # } else if (mtch$pts[mtch$rtn] == 4) {
+        #   mtch$gms[mtch$rtn] <- mtch$gms[mtch$rtn] + 1
+        #   mtch$setGms[mtch$s, mtch$rtn] <- mtch$setGms[mtch$s, mtch$rtn] + 1
+        #   mtch$pts <- c(0, 0)
+        #   gOver <- TRUE
+        # }
         
         # is set over?
         if (gOver) {
