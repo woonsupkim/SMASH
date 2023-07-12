@@ -943,6 +943,7 @@ server <- function(input, output, session) {
 
         
         
+
           '<svg width="100%" height="100%" viewBox="0 0 100 100">',
           '<polygon points="0,0 50,0 50,50 0,50 0,0" fill="green" stroke="black" stroke-width="2"/>',
           '<text x="25" y="25" fill="white" font-size="1">1st Serve</text>',
@@ -950,8 +951,15 @@ server <- function(input, output, session) {
           '<text x="25" y="75" fill="white" font-size="1">1st Serve Return</text>',
           '<text x="75" y="75" fill="white" font-size="1">2nd Serve Return</text>',
           '<text x="50" y="50" fill="white" font-size="1">Volley</text>',
+          '<radialGradient id="radar-gradient" cx="50" cy="50" r="50" gradientUnits="userSpaceOnUse">',
+          '<stop offset="0" stop-color="green" />',
+          '<stop offset="0.8" stop-color="yellow" />',
+          '<stop offset="1" stop-color="red" />',
+          '</radialGradient>',
+          '<path d="M 50,50 A 50,50 0 0 1 0,0" fill="url(#radar-gradient)" />',
           '</svg>',
           '</div>',
+          
         
         
         
