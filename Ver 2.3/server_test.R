@@ -78,6 +78,17 @@ server <- function(input, output, session) {
     nm = c(NULL, NULL), # names of players in match
   )
   
+  
+  # _plyrs US----
+  plyr3 <- reactiveValues(
+    p = matrix(c(0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0),
+               nrow = 5),
+    id = c('0a','0b'), # id's of players in match
+    nm = c(NULL, NULL), # names of players in match
+  )
+  
+  
   # _french open options----
   fr <- reactiveValues(
     x = 0 # option for actual 1 vs simulated 2
@@ -87,6 +98,14 @@ server <- function(input, output, session) {
   wi <- reactiveValues(
     m = 0 # option for slow 1 vs fast 2
   )
+  
+  
+  # _usopen options----
+  us <- reactiveValues(
+    m = 0 # option for slow 1 vs fast 2
+  )
+  
+  
   
   # _ui background----
   output$uiBkgrd <- renderUI(
@@ -1020,6 +1039,417 @@ server <- function(input, output, session) {
       )
     )
   }
+  
+  
+  # >>>>>>>>>>>>>>>>----
+  # ui US page ----
+  output$uiUsop <- renderUI(
+    # if (input$tabs == 2.2) {
+    {
+      div(
+        align = 'center',
+        div(
+          style = 'padding:80px 5% 10px 5%;',
+          h3(
+            style = 'color:white;',
+            'Men\'s Singles Final'
+          ),
+          fluidRow(
+            # _player a----
+            column(
+              width = 3,
+              wellPanel(
+                style = paste0(
+                  'padding:5px; background-color:rgba(50,50,50,0.95); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(0,255,0,0.5);'
+                ),
+                pickerInput(
+                  inputId = 'plyrA2',
+                  label = NULL,
+                  choices = plyrsW$name,
+                  selected = plyr3$nm[1],
+                  options = list(
+                    title = 'Select Player A'
+                  )
+                ),
+                tags$button(
+                  id = 'profA2',
+                  class = 'btn action-button',
+                  style = 'background-color:rgba(0,0,0,0); padding:0; border-width:0;',
+                  img(
+                    src = paste0('plyrs/', plyr3$id[1], '.png'),
+                    width = '80%',
+                    style = 'max-height:275px; object-position:top; object-fit:cover;'
+                  )
+                ),
+                # h6(
+                #   style = 'color:lime;',
+                #   paste0(
+                #     pp2[1,1], ' ', pp2[1,2], ' (', pp2[1,3], ')'
+                #   )
+                # )
+              )
+            ),
+            column(
+              width = 6,
+              wellPanel(
+                style = paste0(
+                  'padding:20px; background-color:rgba(0,75,0,0.95); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,0,0.75);'
+                ),
+                # _scoreboard----
+                uiOutput('scorebd2')
+              ),
+              # _control panel----
+              wellPanel(
+                style = paste0(
+                  'padding:20px; background-color:rgba(0,0,128,0.75); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,0,0.75);'
+                ),
+                h4(
+                  ifelse(
+                    sim$m > 0,
+                    paste0(
+                      'Simulation #: ', sim$i, ' of ', sim$m * sim$n
+                    ),
+                    paste0(
+                      'Choose a simulation speed to get started.'
+                    )
+                  )
+                ),
+                hr(style = 'border-color:white; margin:2px 0 8px 0;'),
+                fluidRow(
+                  style = 'padding:15px 0 0 0;',
+                  column(
+                    width = 5,
+                    offset = 1,
+                    tags$button(
+                      id = 'simSlow2',
+                      class = 'btn action-button',
+                      style = 'background-color:orange; padding:6px 45% 6px 45%;',
+                      img(
+                        src = 'icon_turtle.png',
+                        height = '25px'
+                      )
+                    )
+                  ),
+                  column(
+                    width = 5,
+                    tags$button(
+                      id = 'simFast2',
+                      class = 'btn action-button',
+                      style = 'background-color:orange; padding:6px 45% 6px 45%;',
+                      img(
+                        src = 'icon_rabbit.png',
+                        height = '25px'
+                      )
+                    )
+                  )
+                  # column(
+                  #   width = 2,
+                  #   actionBttn(
+                  #     inputId = 'reset',
+                  #     label = NULL,
+                  #     style = 'simple',
+                  #     color = 'royal',
+                  #     size = 'md',
+                  #     block = TRUE,
+                  #     icon = icon('undo')
+                  #   )
+                  # )
+                )
+              )
+            ),
+            # _player b----
+            column(
+              width = 3,
+              wellPanel(
+                style = paste0(
+                  'padding:5px; background-color:rgba(50,50,50,0.95); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,0,255,0.5);'
+                ),
+                pickerInput(
+                  inputId = 'plyrB2',
+                  label = NULL,
+                  choices = plyrsW$name,
+                  selected = plyr3$nm[2],
+                  options = list(
+                    title = 'Select Player B'
+                  )
+                ),
+                tags$button(
+                  id = 'profB2',
+                  class = 'btn action-button',
+                  style = 'background-color:rgba(0,0,0,0); padding:0; border-width:0;',
+                  img(
+                    src = paste0('plyrs/', plyr3$id[2], '.png'),
+                    width = '80%',
+                    style = 'max-height:275px; object-position:top; object-fit:cover;'
+                  )
+                )
+              )
+            )
+          ),
+          div(
+            uiOutput('uiSim')
+          )
+        )
+      )
+    }
+  )
+  
+  # _event plyr a----
+  observeEvent(
+    input$plyrA2,
+    if (sim$m == 0) {
+      if (input$plyrA2 != '') {
+        z1 <- plyrsW %>%
+          filter(name == input$plyrA2)
+        z2 <- plyrsW %>%
+          filter(id == z1$wim_next)
+        plyr2$id[1] <- z1$id
+        plyr2$id[2] <- z2$id
+        plyr2$p[1,1] <- z1$p1
+        plyr2$p[2,1] <- z1$p2
+        plyr2$p[3,1] <- z1$p3
+        plyr2$p[4,1] <- z1$p4
+        plyr2$p[5,1] <- z1$p5
+        plyr2$p[1,2] <- z2$p1
+        plyr2$p[2,2] <- z2$p2
+        plyr2$p[3,2] <- z2$p3
+        plyr2$p[4,2] <- z2$p4
+        plyr2$p[5,2] <- z2$p5
+        plyr2$nm[1] <- z1$name
+        plyr2$nm[2] <- z2$name
+        updatePickerInput(
+          session = session,
+          inputId = 'plyrA2',
+          selected = z1$name
+        )
+        updatePickerInput(
+          session = session,
+          inputId = 'plyrB2',
+          selected = z2$name
+        )
+      } else {
+        updatePickerInput(
+          session = session,
+          inputId = 'plyrA2',
+          selected = plyr2$nm[1]
+        )
+        updatePickerInput(
+          session = session,
+          inputId = 'plyrB2',
+          selected = plyr2$nm[2]
+        )
+      }
+    }
+  )
+  
+  # _event plyr b----
+  observeEvent(
+    input$plyrB2,
+    if (sim$m == 0) {
+      if (input$plyrB2 != '') {
+        z1 <- plyrsW %>%
+          filter(name == input$plyrB2)
+        z2 <- plyrsW %>%
+          filter(id == z1$wim_next)
+        plyr2$id[2] <- z1$id
+        plyr2$id[1] <- z2$id
+        plyr2$p[1,1] <- z2$p1
+        plyr2$p[2,1] <- z2$p2
+        plyr2$p[3,1] <- z2$p3
+        plyr2$p[4,1] <- z2$p4
+        plyr2$p[5,1] <- z2$p5
+        plyr2$p[1,2] <- z1$p1
+        plyr2$p[2,2] <- z1$p2
+        plyr2$p[3,2] <- z1$p3
+        plyr2$p[4,2] <- z1$p4
+        plyr2$p[5,2] <- z1$p5
+        plyr2$nm[1] <- z2$name
+        plyr2$nm[2] <- z1$name
+        updatePickerInput(
+          session = session,
+          inputId = 'plyrB2',
+          selected = z1$name
+        )
+        updatePickerInput(
+          session = session,
+          inputId = 'plyrA2',
+          selected = z2$name
+        )
+      }
+    }
+  )
+  
+  # _ui scoreboard2----
+  output$scorebd2 <- renderUI(
+    {
+      ss <- matrix(c(rep(0, 10)),
+                   nrow = 5)
+      if (!mtch$status | wi$m == 1) {
+        ss <- mtch$setGms
+      }
+      zA2 <- plyrsW %>%
+        filter(name == input$plyrA2)
+      zB2 <- plyrsW %>%
+        filter(name == input$plyrB2)
+      div(
+        # __header----
+        fluidRow(
+          column(
+            width = 4,
+            h4('Player')
+          ),
+          column(
+            width = 8,
+            fluidRow(
+              column(
+                width = 2,
+                NULL
+                # h4('G')
+              ),
+              lapply(
+                1:5, 
+                function(i) {
+                  column(
+                    width = 2,
+                    h4(i)
+                  )
+                }
+              )
+            )
+          )
+        ),
+        hr(style = 'border-color:white; margin:2px 0 12px 0;'),
+        # __player a score----
+        fluidRow(
+          column(
+            width = 4,
+            h4(
+              style = 'color:lime;',
+              paste0(
+                ifelse(nrow(zA2) == 0, 'Player A', zA2$last),
+                ifelse(!is.na(zA2$wim_seed), paste0(' (', zA2$wim_seed, ')'), '')
+              )
+            )
+          ),
+          column(
+            width = 8,
+            fluidRow(
+              column(
+                width = 2,
+                NULL
+                # h4(mtch$pts[1])
+              ),
+              lapply(
+                1:5, 
+                function(i) {
+                  column(
+                    width = 2,
+                    style = 'padding-left:5px; padding-right:5px;',
+                    div(
+                      style = paste0(
+                        'border:solid ',
+                        ifelse(mtch$setGms[i,1] > mtch$setGms[i,2], 'lime ', 'rgba(0,75,0,0.95) '),
+                        '1px; ',
+                        'border-radius:5px;'
+                      ),
+                      h4(
+                        style = 'color:lime;',
+                        ifelse(sum(mtch$setGms[i,]) > 0, mtch$setGms[i, 1], '')
+                      )
+                    )
+                  )
+                }
+              )
+            )
+          )
+        ),
+        # __player b score----
+        fluidRow(
+          column(
+            width = 4,
+            h4(
+              style = 'color:magenta;',
+              paste0(
+                ifelse(nrow(zB2) == 0, 'Player B', zB2$last),
+                ifelse(!is.na(zB2$wim_seed), paste0(' (', zB2$wim_seed, ')'), '')
+              )
+            )
+          ),
+          column(
+            width = 8,
+            fluidRow(
+              column(
+                width = 2,
+                NULL
+                # h4(mtch$pts[2])
+              ),
+              lapply(
+                1:5, 
+                function(i) {
+                  column(
+                    width = 2,
+                    style = 'padding-left:5px; padding-right:5px;',
+                    div(
+                      style = paste0(
+                        'border:solid ',
+                        ifelse(mtch$setGms[i,1] < mtch$setGms[i,2], 'magenta ', 'rgba(0,75,0,0.95) '),
+                        '1px; ',
+                        'border-radius:5px;'
+                      ),
+                      h4(
+                        style = 'color:magenta;',
+                        ifelse(sum(mtch$setGms[i,]) > 0, mtch$setGms[i, 2], '')
+                      )
+                    )
+                  )
+                }
+              )
+            )
+          )
+        )
+      )
+    }
+  )
+  
+  # _event profile a----
+  observeEvent(
+    input$profA2,
+    if (plyr2$id[1] != '0a') {
+      shinyalert(
+        title = NULL,
+        text = pProf2(1),
+        showConfirmButton = FALSE,
+        html = TRUE,
+        size = 'm',
+        closeOnClickOutside = TRUE,
+        animation = 'pop',
+        timer = FALSE
+      )
+    }
+  )
+  
+  # _event profile b----
+  observeEvent(
+    input$profB2,
+    if (plyr2$id[2] != '0b') {
+      shinyalert(
+        title = NULL,
+        text = pProf2(2),
+        showConfirmButton = FALSE,
+        html = TRUE,
+        size = 'm',
+        closeOnClickOutside = TRUE,
+        animation = 'pop',
+        timer = FALSE
+      )
+    }
+  )
+  
+  
   
   # >>>>>>>>>>>>>>>>----
   # _ui sim results----
