@@ -32,6 +32,10 @@ pp1 <- matrix(
 plyrsW <- read_csv('data/smash.csv') %>% 
   filter(wim_rd == 7)
 
+# players Wimbledon - final 16
+plyrsu <- read_csv('data/smash.csv') %>% 
+  filter(wim_rd == 7)
+
 # team members
 member <- c(
   'Lanru Fu',
