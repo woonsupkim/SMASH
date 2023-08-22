@@ -1901,9 +1901,9 @@ server <- function(input, output, session) {
                 ),
                 h4(
                   ifelse(
-                    sim$u > 0,
+                    sim$m > 0,
                     paste0(
-                      'Simulation #: ', sim$i, ' of ', sim$u * sim$n
+                      'Simulation #: ', sim$i, ' of ', sim$m * sim$n
                     ),
                     paste0(
                       'Choose a simulation speed to get started.'
@@ -1994,7 +1994,7 @@ server <- function(input, output, session) {
   # _event plyr a----
   observeEvent(
     input$plyrA2,
-    if (sim$u == 0) {
+    if (sim$m == 0) {
       if (input$plyrA2 != '') {
         z1 <- plyrsU %>%
           filter(name == input$plyrA2)
@@ -2042,7 +2042,7 @@ server <- function(input, output, session) {
   # _event plyr b----
   observeEvent(
     input$plyrB2,
-    if (sim$u == 0) {
+    if (sim$m == 0) {
       if (input$plyrB2 != '') {
         z1 <- plyrsU %>%
           filter(name == input$plyrB2)
@@ -2081,7 +2081,7 @@ server <- function(input, output, session) {
     {
       ss <- matrix(c(rep(0, 10)),
                    nrow = 5)
-      if (!mtch$status | us$u == 1) {
+      if (!mtch$status | us$m == 1) {
         ss <- mtch$setGms
       }
       zA2 <- plyrsU %>%
@@ -2326,9 +2326,9 @@ server <- function(input, output, session) {
   # >>>>>>>>>>>>>>>>----
   # _ui sim results----
   output$uiSim <- renderUI(
-    if (us$u > 0) {
+    if (us$m > 0) {
       # __pt by pt results----
-      if (us$u == 1 & nrow(mlog$x) > 1) {
+      if (us$m == 1 & nrow(mlog$x) > 1) {
         pa <- nrow(mlog$x[mlog$x$w == plyr3$nm[1],])
         pb <- nrow(mlog$x[mlog$x$w == plyr3$nm[2],])
         div(
@@ -2340,7 +2340,7 @@ server <- function(input, output, session) {
             ),
             column(
               width = 2,
-              if (us$u == 2) {
+              if (us$m == 2) {
                 actionBttn(
                   inputId = 'reset2',
                   label = 'Reset',
@@ -2446,7 +2446,7 @@ server <- function(input, output, session) {
           )
         )
         # __match results----
-      } else if (us$u == 2) {
+      } else if (us$m == 2) {
         ww <- c(0,0)
         if (!mtch$status) {
           ww <- sim$w
@@ -2723,8 +2723,8 @@ server <- function(input, output, session) {
   observeEvent(
     eventExpr = input$simSlow2,
     if (plyr3$id[1] != '0a') {
-      us$u <- 1
-      # sim$u <- sim$u + 1
+      us$m <- 1
+      # sim$m <- sim$m + 1
       # determine who serves first
       mtch$srv <- sample(1:2, 1)
       mtch$rtn <- ifelse(mtch$srv == 1, 2, 1)
@@ -2896,14 +2896,14 @@ server <- function(input, output, session) {
   observeEvent(
     eventExpr = input$simFast2,
     if (plyr3$id[1] != '0a') {
-      us$u <- 2
-      sim$u <- sim$u + 1
+      us$m <- 2
+      sim$m <- sim$m + 1
       observe(
         {
           invalidateLater(20, session) # millisecs each iteration
           isolate(
             # if (sim$i < as.numeric(input$nSim)) {
-            if (sim$i < sim$u * sim$n) {
+            if (sim$i < sim$m * sim$n) {
               sim$i <- sim$i + 1
               # reset match
               mtch$p = 0
@@ -3085,9 +3085,9 @@ server <- function(input, output, session) {
   observeEvent(
     eventExpr = input$reset2,
     {
-      us$u = 0
+      us$m = 0
       sim$i = 0
-      sim$u = 0
+      sim$m = 0
       sim$w = c(0,0)
       sim$l = matrix(rep(0,6), nrow = 3)
       mtch$p = 0
