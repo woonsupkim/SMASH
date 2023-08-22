@@ -1857,7 +1857,7 @@ server <- function(input, output, session) {
                 pickerInput(
                   inputId = 'plyrA2',
                   label = NULL,
-                  choices = plyrsU$name,
+                  choices = plyrsW$name,
                   selected = plyr3$nm[1],
                   options = list(
                     title = 'Select Player A'
@@ -1962,7 +1962,7 @@ server <- function(input, output, session) {
                 pickerInput(
                   inputId = 'plyrB2',
                   label = NULL,
-                  choices = plyrsU$name,
+                  choices = plyrsW$name,
                   selected = plyr3$nm[2],
                   options = list(
                     title = 'Select Player B'
@@ -1994,9 +1994,9 @@ server <- function(input, output, session) {
     input$plyrA2,
     if (sim$m == 0) {
       if (input$plyrA2 != '') {
-        z1 <- plyrsU %>%
+        z1 <- plyrsW %>%
           filter(name == input$plyrA2)
-        z2 <- plyrsU %>%
+        z2 <- plyrsW %>%
           filter(id == z1$wim_next)
         plyr2$id[1] <- z1$id
         plyr2$id[2] <- z2$id
@@ -2042,9 +2042,9 @@ server <- function(input, output, session) {
     input$plyrB2,
     if (sim$m == 0) {
       if (input$plyrB2 != '') {
-        z1 <- plyrsU %>%
+        z1 <- plyrsW %>%
           filter(name == input$plyrB2)
-        z2 <- plyrsU %>%
+        z2 <- plyrsW %>%
           filter(id == z1$wim_next)
         plyr2$id[2] <- z1$id
         plyr2$id[1] <- z2$id
@@ -2082,9 +2082,9 @@ server <- function(input, output, session) {
       if (!mtch$status | us$u == 1) {
         ss <- mtch$setGms
       }
-      zA2 <- plyrsU %>%
+      zA2 <- plyrsW %>%
         filter(name == input$plyrA2)
-      zB2 <- plyrsU %>%
+      zB2 <- plyrsW %>%
         filter(name == input$plyrB2)
       div(
         # __header----
