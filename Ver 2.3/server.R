@@ -78,6 +78,17 @@ server <- function(input, output, session) {
     nm = c(NULL, NULL), # names of players in match
   )
   
+  
+  # _plyrs US----
+  plyr3 <- reactiveValues(
+    p = matrix(c(0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0),
+               nrow = 5),
+    id = c('0a','0b'), # id's of players in match
+    nm = c(NULL, NULL), # names of players in match
+  )
+  
+  
   # _french open options----
   fr <- reactiveValues(
     x = 0 # option for actual 1 vs simulated 2
@@ -87,6 +98,13 @@ server <- function(input, output, session) {
   wi <- reactiveValues(
     m = 0 # option for slow 1 vs fast 2
   )
+  
+  
+  # _usopen options----
+  us <- reactiveValues(
+    u = 0 # option for slow 1 vs fast 2
+  )
+  
   
   # _ui background----
   output$uiBkgrd <- renderUI(
@@ -1814,10 +1832,11 @@ server <- function(input, output, session) {
       )
     }
   )
+  ####################################################################################################################################################################################################################################################################
   
   # >>>>>>>>>>>>>>>>----
   # ui usop page----
-  output$uiWimb <- renderUI(
+  output$uiUsop <- renderUI(
     # if (input$tabs == 2.2) {
     {
       div(
@@ -1840,8 +1859,8 @@ server <- function(input, output, session) {
                 pickerInput(
                   inputId = 'plyrA2',
                   label = NULL,
-                  choices = plyrsW$name,
-                  selected = plyr2$nm[1],
+                  choices = plyrsU$name,
+                  selected = plyr3$nm[1],
                   options = list(
                     title = 'Select Player A'
                   )
@@ -1851,7 +1870,7 @@ server <- function(input, output, session) {
                   class = 'btn action-button',
                   style = 'background-color:rgba(0,0,0,0); padding:0; border-width:0;',
                   img(
-                    src = paste0('plyrs/', plyr2$id[1], '.png'),
+                    src = paste0('plyrs/', plyr3$id[1], '.png'),
                     width = '80%',
                     style = 'max-height:275px; object-position:top; object-fit:cover;'
                   )
@@ -1882,9 +1901,9 @@ server <- function(input, output, session) {
                 ),
                 h4(
                   ifelse(
-                    sim$m > 0,
+                    sim$u > 0,
                     paste0(
-                      'Simulation #: ', sim$i, ' of ', sim$m * sim$n
+                      'Simulation #: ', sim$i, ' of ', sim$u * sim$n
                     ),
                     paste0(
                       'Choose a simulation speed to get started.'
@@ -1945,8 +1964,8 @@ server <- function(input, output, session) {
                 pickerInput(
                   inputId = 'plyrB2',
                   label = NULL,
-                  choices = plyrsW$name,
-                  selected = plyr2$nm[2],
+                  choices = plyrsU$name,
+                  selected = plyr3$nm[2],
                   options = list(
                     title = 'Select Player B'
                   )
@@ -1956,7 +1975,7 @@ server <- function(input, output, session) {
                   class = 'btn action-button',
                   style = 'background-color:rgba(0,0,0,0); padding:0; border-width:0;',
                   img(
-                    src = paste0('plyrs/', plyr2$id[2], '.png'),
+                    src = paste0('plyrs/', plyr3$id[2], '.png'),
                     width = '80%',
                     style = 'max-height:275px; object-position:top; object-fit:cover;'
                   )
@@ -1975,26 +1994,26 @@ server <- function(input, output, session) {
   # _event plyr a----
   observeEvent(
     input$plyrA2,
-    if (sim$m == 0) {
+    if (sim$u == 0) {
       if (input$plyrA2 != '') {
-        z1 <- plyrsW %>%
+        z1 <- plyrsU %>%
           filter(name == input$plyrA2)
-        z2 <- plyrsW %>%
+        z2 <- plyrsU %>%
           filter(id == z1$wim_next)
-        plyr2$id[1] <- z1$id
-        plyr2$id[2] <- z2$id
-        plyr2$p[1,1] <- z1$p1
-        plyr2$p[2,1] <- z1$p2
-        plyr2$p[3,1] <- z1$p3
-        plyr2$p[4,1] <- z1$p4
-        plyr2$p[5,1] <- z1$p5
-        plyr2$p[1,2] <- z2$p1
-        plyr2$p[2,2] <- z2$p2
-        plyr2$p[3,2] <- z2$p3
-        plyr2$p[4,2] <- z2$p4
-        plyr2$p[5,2] <- z2$p5
-        plyr2$nm[1] <- z1$name
-        plyr2$nm[2] <- z2$name
+        plyr3$id[1] <- z1$id
+        plyr3$id[2] <- z2$id
+        plyr3$p[1,1] <- z1$p1
+        plyr3$p[2,1] <- z1$p2
+        plyr3$p[3,1] <- z1$p3
+        plyr3$p[4,1] <- z1$p4
+        plyr3$p[5,1] <- z1$p5
+        plyr3$p[1,2] <- z2$p1
+        plyr3$p[2,2] <- z2$p2
+        plyr3$p[3,2] <- z2$p3
+        plyr3$p[4,2] <- z2$p4
+        plyr3$p[5,2] <- z2$p5
+        plyr3$nm[1] <- z1$name
+        plyr3$nm[2] <- z2$name
         updatePickerInput(
           session = session,
           inputId = 'plyrA2',
@@ -2009,12 +2028,12 @@ server <- function(input, output, session) {
         updatePickerInput(
           session = session,
           inputId = 'plyrA2',
-          selected = plyr2$nm[1]
+          selected = plyr3$nm[1]
         )
         updatePickerInput(
           session = session,
           inputId = 'plyrB2',
-          selected = plyr2$nm[2]
+          selected = plyr3$nm[2]
         )
       }
     }
@@ -2023,26 +2042,26 @@ server <- function(input, output, session) {
   # _event plyr b----
   observeEvent(
     input$plyrB2,
-    if (sim$m == 0) {
+    if (sim$u == 0) {
       if (input$plyrB2 != '') {
-        z1 <- plyrsW %>%
+        z1 <- plyrsU %>%
           filter(name == input$plyrB2)
-        z2 <- plyrsW %>%
+        z2 <- plyrsU %>%
           filter(id == z1$wim_next)
-        plyr2$id[2] <- z1$id
-        plyr2$id[1] <- z2$id
-        plyr2$p[1,1] <- z2$p1
-        plyr2$p[2,1] <- z2$p2
-        plyr2$p[3,1] <- z2$p3
-        plyr2$p[4,1] <- z2$p4
-        plyr2$p[5,1] <- z2$p5
-        plyr2$p[1,2] <- z1$p1
-        plyr2$p[2,2] <- z1$p2
-        plyr2$p[3,2] <- z1$p3
-        plyr2$p[4,2] <- z1$p4
-        plyr2$p[5,2] <- z1$p5
-        plyr2$nm[1] <- z2$name
-        plyr2$nm[2] <- z1$name
+        plyr3$id[2] <- z1$id
+        plyr3$id[1] <- z2$id
+        plyr3$p[1,1] <- z2$p1
+        plyr3$p[2,1] <- z2$p2
+        plyr3$p[3,1] <- z2$p3
+        plyr3$p[4,1] <- z2$p4
+        plyr3$p[5,1] <- z2$p5
+        plyr3$p[1,2] <- z1$p1
+        plyr3$p[2,2] <- z1$p2
+        plyr3$p[3,2] <- z1$p3
+        plyr3$p[4,2] <- z1$p4
+        plyr3$p[5,2] <- z1$p5
+        plyr3$nm[1] <- z2$name
+        plyr3$nm[2] <- z1$name
         updatePickerInput(
           session = session,
           inputId = 'plyrB2',
@@ -2062,12 +2081,12 @@ server <- function(input, output, session) {
     {
       ss <- matrix(c(rep(0, 10)),
                    nrow = 5)
-      if (!mtch$status | wi$m == 1) {
+      if (!mtch$status | us$u == 1) {
         ss <- mtch$setGms
       }
-      zA2 <- plyrsW %>%
+      zA2 <- plyrsU %>%
         filter(name == input$plyrA2)
-      zB2 <- plyrsW %>%
+      zB2 <- plyrsU %>%
         filter(name == input$plyrB2)
       div(
         # __header----
@@ -2192,7 +2211,7 @@ server <- function(input, output, session) {
   # _event profile a----
   observeEvent(
     input$profA2,
-    if (plyr2$id[1] != '0a') {
+    if (plyr3$id[1] != '0a') {
       shinyalert(
         title = NULL,
         text = pProf2(1),
@@ -2209,7 +2228,7 @@ server <- function(input, output, session) {
   # _event profile b----
   observeEvent(
     input$profB2,
-    if (plyr2$id[2] != '0b') {
+    if (plyr3$id[2] != '0b') {
       shinyalert(
         title = NULL,
         text = pProf2(2),
@@ -2230,8 +2249,8 @@ server <- function(input, output, session) {
         '<tr>',
         '<td style = "width:35%">',
         '<div>',
-        '<img class = "myImg1" src = "plyrs/', plyr2$id[ab], '.png" height = "250px"></img>',
-        '<h4>', plyr2$nm[ab], '</h4></div>',
+        '<img class = "myImg1" src = "plyrs/', plyr3$id[ab], '.png" height = "250px"></img>',
+        '<h4>', plyr3$nm[ab], '</h4></div>',
         '</td>',
         '<td style = "width:65%">',
         '<div style = "background-color:rgba(0,100,0,0.2); border-radius:10px; padding:15px 25px 15px 25px;">',
@@ -2240,11 +2259,11 @@ server <- function(input, output, session) {
         'width:100%; height:40px; margin:5px 0 5px 0; position:relative;">',
         '<div style = "background-color:#00b200; border-radius:3px 6px 6px 3px; ',
         'position:absolute; top:0; left:0; ',
-        'width:', round(100 * plyr2$p[1,ab] + 20, 0), '%; height:100%; ',
+        'width:', round(100 * plyr3$p[1,ab] + 20, 0), '%; height:100%; ',
         'padding:5px 0 5px 0;">',
         '<h5 style = "text-align:left; color:white; padding-left:10px;">1st Serve',
         '<span style = "float:right; color:white; padding-right:10px;">',
-        round(100 * plyr2$p[1,ab] + 20, 0),
+        round(100 * plyr3$p[1,ab] + 20, 0),
         '</span></h5>',
         '</div>',
         '</div>',
@@ -2252,11 +2271,11 @@ server <- function(input, output, session) {
         'width:100%; height:40px; margin:5px 0 5px 0; position:relative;">',
         '<div style = "background-color:#00b200; border-radius:3px 6px 6px 3px; ',
         'position:absolute; top:0; left:0; ',
-        'width:', round(100 * plyr2$p[2,ab] * plyr2$p[1,ab] + 10, 0), '%; height:100%; ',
+        'width:', round(100 * plyr3$p[2,ab] * plyr3$p[1,ab] + 10, 0), '%; height:100%; ',
         'padding:5px 0 5px 0;">',
         '<h5 style = "text-align:left; color:white; padding-left:10px;">2nd Serve',
         '<span style = "float:right; color:white; padding-right:10px;">',
-        round(100 * plyr2$p[2,ab] * plyr2$p[1,ab] + 10, 0),
+        round(100 * plyr3$p[2,ab] * plyr3$p[1,ab] + 10, 0),
         '</span></h5>',
         '</div>',
         '</div>',
@@ -2264,11 +2283,11 @@ server <- function(input, output, session) {
         'width:100%; height:40px; margin:5px 0 5px 0; position:relative;">',
         '<div style = "background-color:#00b200; border-radius:3px 6px 6px 3px; ',
         'position:absolute; top:0; left:0; ',
-        'width:', round(100 * plyr2$p[3,ab], 0), '%; height:100%; ',
+        'width:', round(100 * plyr3$p[3,ab], 0), '%; height:100%; ',
         'padding:5px 0 5px 0;">',
         '<h5 style = "text-align:left; color:white; padding-left:10px;">1st Serve Return',
         '<span style = "float:right; color:white; padding-right:10px;">',
-        round(100 * plyr2$p[3,ab], 0),
+        round(100 * plyr3$p[3,ab], 0),
         '</span></h5>',
         '</div>',
         '</div>',
@@ -2276,11 +2295,11 @@ server <- function(input, output, session) {
         'width:100%; height:40px; margin:5px 0 5px 0; position:relative;">',
         '<div style = "background-color:#00b200; border-radius:3px 6px 6px 3px; ',
         'position:absolute; top:0; left:0; ',
-        'width:', round(100 * plyr2$p[4,ab], 0), '%; height:100%; ',
+        'width:', round(100 * plyr3$p[4,ab], 0), '%; height:100%; ',
         'padding:5px 0 5px 0;">',
         '<h5 style = "text-align:left; color:white; padding-left:10px;">2nd Serve Return',
         '<span style = "float:right; color:white; padding-right:10px;">',
-        round(100 * plyr2$p[4,ab], 0),
+        round(100 * plyr3$p[4,ab], 0),
         '</span></h5>',
         '</div>',
         '</div>',
@@ -2288,11 +2307,11 @@ server <- function(input, output, session) {
         'width:100%; height:40px; margin:5px 0 5px 0; position:relative;">',
         '<div style = "background-color:#00b200; border-radius:3px 6px 6px 3px; ',
         'position:absolute; top:0; left:0; ',
-        'width:', round(100 * plyr2$p[5,ab] * 1.8, 0), '%; height:100%; ',
+        'width:', round(100 * plyr3$p[5,ab] * 1.8, 0), '%; height:100%; ',
         'padding:5px 0 5px 0;">',
         '<h5 style = "text-align:left; color:white; padding-left:10px;">Volley',
         '<span style = "float:right; color:white; padding-right:10px;">',
-        round(100 * plyr2$p[5,ab] * 1.8, 0),
+        round(100 * plyr3$p[5,ab] * 1.8, 0),
         '</span></h5>',
         '</div>',
         '</div>',
@@ -2307,11 +2326,11 @@ server <- function(input, output, session) {
   # >>>>>>>>>>>>>>>>----
   # _ui sim results----
   output$uiSim <- renderUI(
-    if (wi$m > 0) {
+    if (us$u > 0) {
       # __pt by pt results----
-      if (wi$m == 1 & nrow(mlog$x) > 1) {
-        pa <- nrow(mlog$x[mlog$x$w == plyr2$nm[1],])
-        pb <- nrow(mlog$x[mlog$x$w == plyr2$nm[2],])
+      if (us$u == 1 & nrow(mlog$x) > 1) {
+        pa <- nrow(mlog$x[mlog$x$w == plyr3$nm[1],])
+        pb <- nrow(mlog$x[mlog$x$w == plyr3$nm[2],])
         div(
           fluidRow(
             column(
@@ -2321,7 +2340,7 @@ server <- function(input, output, session) {
             ),
             column(
               width = 2,
-              if (wi$m == 2) {
+              if (us$u == 2) {
                 actionBttn(
                   inputId = 'reset2',
                   label = 'Reset',
@@ -2427,7 +2446,7 @@ server <- function(input, output, session) {
           )
         )
         # __match results----
-      } else if (wi$m == 2) {
+      } else if (us$u == 2) {
         ww <- c(0,0)
         if (!mtch$status) {
           ww <- sim$w
@@ -2703,9 +2722,9 @@ server <- function(input, output, session) {
   # _event simulate slow----
   observeEvent(
     eventExpr = input$simSlow2,
-    if (plyr2$id[1] != '0a') {
-      wi$m <- 1
-      # sim$m <- sim$m + 1
+    if (plyr3$id[1] != '0a') {
+      us$u <- 1
+      # sim$u <- sim$u + 1
       # determine who serves first
       mtch$srv <- sample(1:2, 1)
       mtch$rtn <- ifelse(mtch$srv == 1, 2, 1)
@@ -2720,11 +2739,11 @@ server <- function(input, output, session) {
               sOver <- FALSE
               # play point
               r1 <- runif(1)
-              if (plyr2$p[1, mtch$srv] > r1) { # first serve in
+              if (plyr3$p[1, mtch$srv] > r1) { # first serve in
                 r12 <- runif(1)
-                if (plyr2$p[3, mtch$rtn] > r12) { # return first serve in
+                if (plyr3$p[3, mtch$rtn] > r12) { # return first serve in
                   r13 <- runif(1)
-                  if (plyr2$p[5, mtch$srv] > r13) { # point won by srv
+                  if (plyr3$p[5, mtch$srv] > r13) { # point won by srv
                     plusLog(mtch$srv)
                     mtch$pts[mtch$srv] <- mtch$pts[mtch$srv] + 1
                   } else { # point won by rtn
@@ -2737,11 +2756,11 @@ server <- function(input, output, session) {
                 }
               } else { # first serve out
                 r2 <- runif(1)
-                if (plyr2$p[2, mtch$srv] > r2) { # second serve in
+                if (plyr3$p[2, mtch$srv] > r2) { # second serve in
                   r22 <- runif(1)
-                  if (plyr2$p[4, mtch$rtn] > r22) { # return second serve in
+                  if (plyr3$p[4, mtch$rtn] > r22) { # return second serve in
                     r23 <- runif(1)
-                    if (plyr2$p[5, mtch$srv] > r23) { # point won by srv
+                    if (plyr3$p[5, mtch$srv] > r23) { # point won by srv
                       plusLog(mtch$srv)
                       mtch$pts[mtch$srv] <- mtch$pts[mtch$srv] + 1
                     } else { # point won by rtn
@@ -2866,8 +2885,8 @@ server <- function(input, output, session) {
           i = mlog$x$i[nrow(mlog$x)] + 1,
           g = sum(mtch$gms) + 1,
           s = sum(mtch$sts) + 1,
-          w = switch(ab, plyr2$nm[1], plyr2$nm[2]),
-          srv = switch(mtch$srv, plyr2$nm[1], plyr2$nm[2])
+          w = switch(ab, plyr3$nm[1], plyr3$nm[2]),
+          srv = switch(mtch$srv, plyr3$nm[1], plyr3$nm[2])
         )
       )
   }
@@ -2876,15 +2895,15 @@ server <- function(input, output, session) {
   # _event simulate fast----
   observeEvent(
     eventExpr = input$simFast2,
-    if (plyr2$id[1] != '0a') {
-      wi$m <- 2
-      sim$m <- sim$m + 1
+    if (plyr3$id[1] != '0a') {
+      us$u <- 2
+      sim$u <- sim$u + 1
       observe(
         {
           invalidateLater(20, session) # millisecs each iteration
           isolate(
             # if (sim$i < as.numeric(input$nSim)) {
-            if (sim$i < sim$m * sim$n) {
+            if (sim$i < sim$u * sim$n) {
               sim$i <- sim$i + 1
               # reset match
               mtch$p = 0
@@ -2906,11 +2925,11 @@ server <- function(input, output, session) {
                 }
                 # play point
                 r1 <- runif(1)
-                if (plyr2$p[1, mtch$srv] > r1) { # first serve in
+                if (plyr3$p[1, mtch$srv] > r1) { # first serve in
                   r12 <- runif(1)
-                  if (plyr2$p[3, mtch$rtn] > r12) { # return first serve in
+                  if (plyr3$p[3, mtch$rtn] > r12) { # return first serve in
                     r13 <- runif(1)
-                    if (plyr2$p[5, mtch$srv] > r13) { # point won by srv
+                    if (plyr3$p[5, mtch$srv] > r13) { # point won by srv
                       mtch$pts[mtch$srv] <- mtch$pts[mtch$srv] + 1
                     } else { # point won by rtn
                       mtch$pts[mtch$rtn] <- mtch$pts[mtch$rtn] + 1
@@ -2920,11 +2939,11 @@ server <- function(input, output, session) {
                   }
                 } else { # first serve out
                   r2 <- runif(1)
-                  if (plyr2$p[2, mtch$srv] > r2) { # second serve in
+                  if (plyr3$p[2, mtch$srv] > r2) { # second serve in
                     r22 <- runif(1)
-                    if (plyr2$p[4, mtch$rtn] > r22) { # return second serve in
+                    if (plyr3$p[4, mtch$rtn] > r22) { # return second serve in
                       r23 <- runif(1)
-                      if (plyr2$p[5, mtch$srv] > r23) { # point won by srv
+                      if (plyr3$p[5, mtch$srv] > r23) { # point won by srv
                         mtch$pts[mtch$srv] <- mtch$pts[mtch$srv] + 1
                       } else { # point won by rtn
                         mtch$pts[mtch$rtn] <- mtch$pts[mtch$rtn] + 1
@@ -3066,9 +3085,9 @@ server <- function(input, output, session) {
   observeEvent(
     eventExpr = input$reset2,
     {
-      wi$m = 0
+      us$u = 0
       sim$i = 0
-      sim$m = 0
+      sim$u = 0
       sim$w = c(0,0)
       sim$l = matrix(rep(0,6), nrow = 3)
       mtch$p = 0
@@ -3083,8 +3102,8 @@ server <- function(input, output, session) {
         c(rep(0, 10)),
         nrow = 5
       )
-      plyr2$id = c('0a', '0b')
-      plyr2$nm = c(NULL, NULL)
+      plyr3$id = c('0a', '0b')
+      plyr3$nm = c(NULL, NULL)
       updatePickerInput(
         session = session,
         inputId = 'plyrA2',
@@ -3097,7 +3116,7 @@ server <- function(input, output, session) {
       )
     }
   )
-  
+  ####################################################################################################################################################################################################################################################################
   # >>>>>>>>>>>>>>>>----
   # ui abou page----
   output$uiAbou <- renderUI(
