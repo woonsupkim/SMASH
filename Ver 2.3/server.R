@@ -102,7 +102,7 @@ server <- function(input, output, session) {
   
   # _usopen options----
   us <- reactiveValues(
-    m = 0 # option for slow 1 vs fast 2
+    u = 0 # option for slow 1 vs fast 2
   )
   
   
@@ -1695,6 +1695,254 @@ server <- function(input, output, session) {
       }
     }
   )
+  
+  
+  # >>>>>>>>>>>>>>>>----
+  # _ui sim results----
+  output$uiSim <- renderUI(
+    if (us$u > 0) {
+      # __pt by pt results----
+      if (us$u == 1 & nrow(mlog$x) > 1) {
+        pa <- nrow(mlog$x[mlog$x$w == plyr3$nm[1],])
+        pb <- nrow(mlog$x[mlog$x$w == plyr3$nm[2],])
+        div(
+          fluidRow(
+            column(
+              width = 8,
+              offset = 2,
+              h4('Point-by-Point Results')
+            ),
+            column(
+              width = 2,
+              if (us$u == 2) {
+                actionBttn(
+                  inputId = 'reset2',
+                  label = 'Reset',
+                  style = 'simple',
+                  color = 'royal',
+                  size = 'sm',
+                  block = TRUE,
+                  icon = icon('undo')
+                )
+              }
+            )
+          ),
+          fluidRow(
+            # ___points won a----
+            column(
+              width = 3,
+              wellPanel(
+                style = paste0(
+                  'padding:15px 25px 15px 25px; border-width:0; ',
+                  'background-color:rgba(50,50,50,0.5); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,255,0.5);'
+                ),
+                h4('Points Won'),
+                h1(
+                  style = 'color:lime; font-size:92px;',
+                  pa
+                ),
+                div(
+                  style = paste0(
+                    'padding:1px 0 1px 0; width:50%; ',
+                    'border:solid lime 1px; border-radius:5px;'
+                  ),
+                  h4(
+                    style = 'color:lime; font-size:30px;',
+                    ifelse(
+                      pa + pb > 0,
+                      paste0(
+                        round(100 * pa / (pa + pb), 0), '%'
+                      ),
+                      '0%'
+                    )
+                  )
+                )
+              )
+            ),
+            # ___central area----
+            column(
+              width = 6,
+              wellPanel(
+                style = paste0(
+                  'padding:15px 25px 15px 25px; border-width:0; ',
+                  'background-color:rgba(50,50,50,0.5); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,255,0.5);'
+                ),
+                # radioGroupButtons(
+                #   inputId = 'simDisp',
+                #   label = NULL,
+                #   choices = c(1:3),
+                #   selected = 1,
+                #   status = 'default',
+                #   size = 'xs',
+                #   justified = TRUE,
+                #   individual = TRUE,
+                #   checkIcon = list(
+                #     yes = icon('check')
+                #   )
+                # ),
+                uiOutput('uiPbpDisp')
+              )
+            ),
+            # ___points won b----
+            column(
+              width = 3,
+              wellPanel(
+                style = paste0(
+                  'padding:15px 25px 15px 25px; border-width:0; ',
+                  'background-color:rgba(50,50,50,0.5); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,255,0.5);'
+                ),
+                h4('Points Won'),
+                h1(
+                  style = 'color:lime; font-size:92px;',
+                  pb
+                ),
+                div(
+                  style = paste0(
+                    'padding:1px 0 1px 0; width:50%; ',
+                    'border:solid lime 1px; border-radius:5px;'
+                  ),
+                  h4(
+                    style = 'color:lime; font-size:30px;',
+                    ifelse(
+                      pa + pb > 0,
+                      paste0(
+                        round(100 * pb / (pa + pb), 0), '%'
+                      ),
+                      '0%'
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        # __match results----
+      } else if (us$u == 2) {
+        ww <- c(0,0)
+        if (!mtch$status) {
+          ww <- sim$w
+        }
+        div(
+          fluidRow(
+            column(
+              width = 8,
+              offset = 2,
+              h4('Match Results')
+            ),
+            column(
+              width = 2,
+              actionBttn(
+                inputId = 'reset2',
+                label = 'Reset',
+                style = 'simple',
+                color = 'royal',
+                size = 'sm',
+                block = TRUE,
+                icon = icon('undo')
+              )
+            )
+          ),
+          fluidRow(
+            # ___matches won a----
+            column(
+              width = 3,
+              wellPanel(
+                style = paste0(
+                  'padding:15px 25px 15px 25px; border-width:0; ',
+                  'background-color:rgba(50,50,50,0.5); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,255,0.5);'
+                ),
+                h4('Matches Won'),
+                h1(
+                  style = 'color:lime; font-size:92px;',
+                  ww[1]
+                ),
+                div(
+                  style = paste0(
+                    'padding:1px 0 1px 0; width:50%; ',
+                    'border:solid lime 1px; border-radius:5px;'
+                  ),
+                  h4(
+                    style = 'color:lime; font-size:30px;',
+                    ifelse(
+                      sim$i > 0,
+                      paste0(
+                        round(100 * ww[1] / sum(ww), 0), '%'
+                      ),
+                      '0%'
+                    )
+                  )
+                )
+              )
+            ),
+            # ___central area----
+            column(
+              width = 6,
+              wellPanel(
+                style = paste0(
+                  # 'padding:15px 25px 15px 25px; border-width:0; ',
+                  'padding:50px 25px 15px 25px; border-width:0; ',
+                  'background-color:rgba(50,50,50,0.5); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,255,0.5);'
+                ),
+                # radioGroupButtons(
+                #   inputId = 'simDisp',
+                #   label = NULL,
+                #   choices = c(1:3),
+                #   selected = 1,
+                #   status = 'default',
+                #   size = 'xs',
+                #   justified = TRUE,
+                #   individual = TRUE,
+                #   checkIcon = list(
+                #     yes = icon('check')
+                #   )
+                # ),
+                uiOutput('uiSimDisp')
+              )
+            ),
+            # ___matches won b----
+            column(
+              width = 3,
+              wellPanel(
+                style = paste0(
+                  'padding:15px 25px 15px 25px; border-width:0; ',
+                  'background-color:rgba(50,50,50,0.5); ',
+                  'box-shadow: 10px 10px 10px 0 rgba(255,255,255,0.5);'
+                ),
+                h4('Matches Won'),
+                h1(
+                  style = 'color:magenta; font-size:92px;',
+                  ww[2]
+                ),
+                div(
+                  style = paste0(
+                    'padding:1px 0 1px 0; width:50%; ',
+                    'border:solid magenta 1px; border-radius:5px;'
+                  ),
+                  h4(
+                    style = 'color:magenta; font-size:30px;',
+                    ifelse(
+                      sim$i > 0,
+                      paste0(
+                        round(100 * ww[2] / sum(ww), 0), '%'
+                      ),
+                      '0%'
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      }
+    }
+  )
+  
+  
   
   # __ui pbp disp----
   output$uiPbpDisp <- renderUI(
