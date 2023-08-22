@@ -78,17 +78,6 @@ server <- function(input, output, session) {
     nm = c(NULL, NULL), # names of players in match
   )
   
-  
-  # _plyrs US----
-  plyr3 <- reactiveValues(
-    p = matrix(c(0, 0, 0, 0, 0,
-                 0, 0, 0, 0, 0),
-               nrow = 5),
-    id = c('0a','0b'), # id's of players in match
-    nm = c(NULL, NULL), # names of players in match
-  )
-  
-  
   # _french open options----
   fr <- reactiveValues(
     x = 0 # option for actual 1 vs simulated 2
@@ -97,12 +86,6 @@ server <- function(input, output, session) {
   # _wimbledon options----
   wi <- reactiveValues(
     m = 0 # option for slow 1 vs fast 2
-  )
-  
-  
-  # _usopen options----
-  us <- reactiveValues(
-    u = 0 # option for slow 1 vs fast 2
   )
   
   # _ui background----
@@ -529,11 +512,11 @@ server <- function(input, output, session) {
               align = 'left',
               style = 'padding:1px 5px 1px 0;',
               uiOutput(paste0('setL', i, '_B'))
-            )							   
+            )
           )
         }
-      )	 
-    ) 
+      )
+    )
     # ___disp 2----
     # } else if (input$matchDisp1 == '2') {
     #   div(
@@ -1834,7 +1817,7 @@ server <- function(input, output, session) {
   
   # >>>>>>>>>>>>>>>>----
   # ui usop page----
-  output$uiUsop <- renderUI(
+  output$uiWimb <- renderUI(
     # if (input$tabs == 2.2) {
     {
       div(
@@ -1858,7 +1841,7 @@ server <- function(input, output, session) {
                   inputId = 'plyrA2',
                   label = NULL,
                   choices = plyrsW$name,
-                  selected = plyr3$nm[1],
+                  selected = plyr2$nm[1],
                   options = list(
                     title = 'Select Player A'
                   )
@@ -1868,7 +1851,7 @@ server <- function(input, output, session) {
                   class = 'btn action-button',
                   style = 'background-color:rgba(0,0,0,0); padding:0; border-width:0;',
                   img(
-                    src = paste0('plyrs/', plyr3$id[1], '.png'),
+                    src = paste0('plyrs/', plyr2$id[1], '.png'),
                     width = '80%',
                     style = 'max-height:275px; object-position:top; object-fit:cover;'
                   )
@@ -1963,7 +1946,7 @@ server <- function(input, output, session) {
                   inputId = 'plyrB2',
                   label = NULL,
                   choices = plyrsW$name,
-                  selected = plyr3$nm[2],
+                  selected = plyr2$nm[2],
                   options = list(
                     title = 'Select Player B'
                   )
@@ -1973,7 +1956,7 @@ server <- function(input, output, session) {
                   class = 'btn action-button',
                   style = 'background-color:rgba(0,0,0,0); padding:0; border-width:0;',
                   img(
-                    src = paste0('plyrs/', plyr3$id[2], '.png'),
+                    src = paste0('plyrs/', plyr2$id[2], '.png'),
                     width = '80%',
                     style = 'max-height:275px; object-position:top; object-fit:cover;'
                   )
@@ -2026,12 +2009,12 @@ server <- function(input, output, session) {
         updatePickerInput(
           session = session,
           inputId = 'plyrA2',
-          selected = plyr3$nm[1]
+          selected = plyr2$nm[1]
         )
         updatePickerInput(
           session = session,
           inputId = 'plyrB2',
-          selected = plyr3$nm[2]
+          selected = plyr2$nm[2]
         )
       }
     }
@@ -2079,7 +2062,7 @@ server <- function(input, output, session) {
     {
       ss <- matrix(c(rep(0, 10)),
                    nrow = 5)
-      if (!mtch$status | us$u == 1) {
+      if (!mtch$status | wi$m == 1) {
         ss <- mtch$setGms
       }
       zA2 <- plyrsW %>%
@@ -3114,43 +3097,6 @@ server <- function(input, output, session) {
       )
     }
   )
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   # >>>>>>>>>>>>>>>>----
   # ui abou page----
