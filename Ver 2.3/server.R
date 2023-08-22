@@ -524,6 +524,13 @@ server <- function(input, output, session) {
                   'border-radius:5px;'
                 ),
                 h4(style = 'margin:2px;', i)
+                
+                
+                
+                
+                
+                
+                
               )
             ),
             column(
@@ -532,6 +539,7 @@ server <- function(input, output, session) {
               style = 'padding:1px 5px 1px 0;',
               uiOutput(paste0('setL', i, '_B'))
             )
+            
           )
         }
       )
@@ -1066,7 +1074,7 @@ server <- function(input, output, session) {
                 pickerInput(
                   inputId = 'plyrA2',
                   label = NULL,
-                  choices = plyrsW$name,
+                  choices = plyrsU$name,
                   selected = plyr3$nm[1],
                   options = list(
                     title = 'Select Player A'
@@ -1171,7 +1179,7 @@ server <- function(input, output, session) {
                 pickerInput(
                   inputId = 'plyrB2',
                   label = NULL,
-                  choices = plyrsW$name,
+                  choices = plyrsU$name,
                   selected = plyr3$nm[2],
                   options = list(
                     title = 'Select Player B'
@@ -1203,9 +1211,9 @@ server <- function(input, output, session) {
     input$plyrA2,
     if (sim$m == 0) {
       if (input$plyrA2 != '') {
-        z1 <- plyrsW %>%
+        z1 <- plyrsU %>%
           filter(name == input$plyrA2)
-        z2 <- plyrsW %>%
+        z2 <- plyrsU %>%
           filter(id == z1$wim_next)
         plyr2$id[1] <- z1$id
         plyr2$id[2] <- z2$id
@@ -1251,9 +1259,9 @@ server <- function(input, output, session) {
     input$plyrB2,
     if (sim$m == 0) {
       if (input$plyrB2 != '') {
-        z1 <- plyrsW %>%
+        z1 <- plyrsU %>%
           filter(name == input$plyrB2)
-        z2 <- plyrsW %>%
+        z2 <- plyrsU %>%
           filter(id == z1$wim_next)
         plyr2$id[2] <- z1$id
         plyr2$id[1] <- z2$id
@@ -1291,9 +1299,9 @@ server <- function(input, output, session) {
       if (!mtch$status | wi$m == 1) {
         ss <- mtch$setGms
       }
-      zA2 <- plyrsW %>%
+      zA2 <- plyrsU %>%
         filter(name == input$plyrA2)
-      zB2 <- plyrsW %>%
+      zB2 <- plyrsU %>%
         filter(name == input$plyrB2)
       div(
         # __header----
