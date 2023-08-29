@@ -30,11 +30,11 @@ pp1 <- matrix(
 
 # players Wimbledon - final 16
 plyrsW <- read_csv('data/smash_us.csv') %>% 
-  filter(wim_rd == 12)
+  filter(wim_rd == 64)
 
 # players Wimbledon - final 16
 plyrsu <- read_csv('data/smash_us.csv') %>% 
-  filter(wim_rd == 12)
+  filter(wim_rd == 64)
 
 # team members
 member <- c(
