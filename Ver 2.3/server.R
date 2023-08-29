@@ -1428,7 +1428,7 @@ server <- function(input, output, session) {
       mtch$rtn <- ifelse(mtch$srv == 1, 2, 1)
       observe(
         {
-          invalidateLater(1, session) # millisecs each iteration
+          #invalidateLater(1, session) # millisecs each iteration
           isolate(
             while (mtch$status) {
               mtch$p <- mtch$p + 1
@@ -1598,7 +1598,7 @@ server <- function(input, output, session) {
       sim$m <- sim$m + 1
       observe(
         {
-          invalidateLater(1, session) # millisecs each iteration
+          #invalidateLater(1, session) # millisecs each iteration
           isolate(
             # if (sim$i < as.numeric(input$nSim)) {
             if (sim$i < sim$m * sim$n) {
