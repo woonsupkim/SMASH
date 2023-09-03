@@ -1,32 +1,33 @@
 ﻿id,name,first,last,wim_seed,wim_rd,wim_next,p1,p2,p3,p4,p5
-shelt,Ben Shelton,Ben,Shelton,47,32,karat,0.78,0.55,0.24,0.4,0.3
-karat,Aslan Karatsev,Aslan,Karatsev,77,32,shelt,0.76,0.48,0.26,0.45,0.32
-manna,Adrian Mannarino,Adrian,Mannarino,35,32,tiafo,0.73,0.54,0.28,0.52,0.37
-tiafo,Frances Tiafoe,Frances,Tiafoe,10,32,manna,0.72,0.52,0.27,0.5,0.35
-bonzi,Benjamin Bonzi,Benjamin,Bonzi,108,32,stric,0.73,0.53,0.27,0.5,0.36
-hijik,Rinky Hijikata,Rinky,Hijikata,110,32,zhang,0.66,0.45,0.29,0.48,0.35
-paul,Tommy Paul,Tommy,Paul,14,32,david,0.73,0.53,0.29,0.54,0.39
-david,Alejandro Davidovich Fokina,Alejandro,Davidovich Fokina,21,32,paul,0.68,0.53,0.3,0.53,0.39
-gojo,Borna Gojo,Borna,Gojo,105,32,vesel,0.78,0.43,0.27,0.52,0.37
-djere,Laslo Djere,Laslo,Djere,38,32,djoko,0.7,0.5,0.24,0.53,0.35
-djoko,Novak Djokovic,Novak,Djokovic,2,32,djere,0.79,0.59,0.32,0.57,0.42
-zhang,Zhizhen Zhang,Zhizhen,Zhang,67,32,hijik,0.75,0.51,0.22,0.51,0.33
-fritz,Taylor Fritz,Taylor,Fritz,9,32,,0.79,0.53,0.26,0.54,0.37
-arnal,Matteo Arnaldi,Matteo,Arnaldi,61,32,norri,0.69,0.48,0.25,0.46,0.35
+tiafo,Frances Tiafoe,Frances,Tiafoe,10,16,hijik,0.72,0.52,0.27,0.5,0.35
+hijik,Rinky Hijikata,Rinky,Hijikata,110,16,tiafo,0.66,0.45,0.29,0.48,0.35
+gojo,Borna Gojo,Borna,Gojo,105,16,djoko,0.78,0.43,0.27,0.52,0.37
+djoko,Novak Djokovic,Novak,Djokovic,2,16,gojo,0.79,0.59,0.32,0.57,0.42
+fritz,Taylor Fritz,Taylor,Fritz,9,16,,0.79,0.53,0.26,0.54,0.37
+arnal,Matteo Arnaldi,Matteo,Arnaldi,61,16,alcar,0.69,0.48,0.25,0.46,0.35
+alcar,Carlos Alcaraz,Carlos,Alcaraz,1,16,arnal,0.73,0.57,0.34,0.5,0.41
+demin,Alex De Minaur,Alex,De Minaur,13,16,medve,0.73,0.52,0.35,0.53,0.42
+drape,Jack Draper,Jack,Draper,123,16,ruble,0.73,0.55,0.31,0.52,0.39
+ruble,Andrey Rublev,Andrey,Rublev,8,16,drape,0.76,0.49,0.29,0.49,0.36
+sinne,Jannik Sinner,Jannik,Sinner,6,16,zvere,0.77,0.54,0.32,0.56,0.41
+zvere,Alexander Zverev,Alexander,Zverev,12,16,sinne,0.74,0.47,0.26,0.49,0.35
+medve,Daniil Medvedev,Daniil,Medvedev,3,16,demin,0.75,0.53,0.35,0.56,0.43
+shelt,Ben Shelton,Ben,Shelton,47,32,,0.78,0.55,0.24,0.4,0.3
+karat,Aslan Karatsev,Aslan,Karatsev,77,32,,0.76,0.48,0.26,0.45,0.32
+manna,Adrian Mannarino,Adrian,Mannarino,35,32,,0.73,0.54,0.28,0.52,0.37
+bonzi,Benjamin Bonzi,Benjamin,Bonzi,108,32,,0.73,0.53,0.27,0.5,0.36
+paul,Tommy Paul,Tommy,Paul,14,32,,0.73,0.53,0.29,0.54,0.39
+david,Alejandro Davidovich Fokina,Alejandro,Davidovich Fokina,21,32,,0.68,0.53,0.3,0.53,0.39
+djere,Laslo Djere,Laslo,Djere,38,32,,0.7,0.5,0.24,0.53,0.35
+zhang,Zhizhen Zhang,Zhizhen,Zhang,67,32,,0.75,0.51,0.22,0.51,0.33
 baez,Sebastian Baez,Sebastian,Baez,32,32,,0.6,0.41,0.23,0.55,0.34
-alcar,Carlos Alcaraz,Carlos,Alcaraz,1,32,evans,0.73,0.57,0.34,0.5,0.41
-demin,Alex De Minaur,Alex,De Minaur,13,32,jarry,0.73,0.52,0.35,0.53,0.42
-dimit,Grigor Dimitrov,Grigor,Dimitrov,19,32,zvere,0.79,0.5,0.28,0.5,0.36
-drape,Jack Draper,Jack,Draper,123,32,mmoh,0.73,0.55,0.31,0.52,0.39
-evans,Daniel Evans,Daniel,Evans,28,32,alcar,0.73,0.51,0.3,0.5,0.38
-jarry,Nicolas Jarry,Nicolas,Jarry,25,32,demin,0.77,0.54,0.24,0.4,0.3
-mmoh,Michael Mmoh,Michael,Mmoh,89,32,drape,0.68,0.51,0.31,0.54,0.39
-norri,Cameron Norrie,Cameron,Norrie,16,32,arnal,0.72,0.52,0.31,0.49,0.38
-rinde,Arthur Rinderknech,Arthur,Rinderknech,73,32,ruble,0.73,0.5,0.24,0.43,0.31
-ruble,Andrey Rublev,Andrey,Rublev,8,32,rinde,0.76,0.49,0.29,0.49,0.36
-sinne,Jannik Sinner,Jannik,Sinner,6,32,wawri,0.77,0.54,0.32,0.56,0.41
-wawri,Stan Wawrinka,Stan,Wawrinka,49,32,sinne,0.78,0.51,0.29,0.45,0.36
-zvere,Alexander Zverev,Alexander,Zverev,12,32,dimit,0.74,0.47,0.26,0.49,0.35
+dimit,Grigor Dimitrov,Grigor,Dimitrov,19,32,,0.79,0.5,0.28,0.5,0.36
+evans,Daniel Evans,Daniel,Evans,28,32,,0.73,0.51,0.3,0.5,0.38
+jarry,Nicolas Jarry,Nicolas,Jarry,25,32,,0.77,0.54,0.24,0.4,0.3
+mmoh,Michael Mmoh,Michael,Mmoh,89,32,,0.68,0.51,0.31,0.54,0.39
+norri,Cameron Norrie,Cameron,Norrie,16,32,,0.72,0.52,0.31,0.49,0.38
+rinde,Arthur Rinderknech,Arthur,Rinderknech,73,32,,0.73,0.5,0.24,0.43,0.31
+wawri,Stan Wawrinka,Stan,Wawrinka,49,32,,0.78,0.51,0.29,0.45,0.36
 altma,Daniel Altmaier,Daniel,Altmaier,53,64,,0.7,0.55,0.2,0.45,0.29
 berre,Matteo Berrettini,Matteo,Berrettini,36,64,,0.81,0.5,0.27,0.44,0.41
 etche,Tomas Martin Etcheverry,Tomas Martin,Etcheverry,34,64,,0.7,0.48,0.26,0.45,0.33
@@ -35,7 +36,6 @@ harri,Lloyd Harris,Lloyd,Harris,177,64,,0.77,0.47,0.24,0.41,0.3
 hsu,Yuanlin Hsu,Yuanlin,Hsu,237,64,,0.58,0.36,0.14,0.29,0.21
 huesl,Marc-Andrea Huesler,Marc-Andrea,Huesler,97,64,,0.75,0.52,0.26,0.43,0.32
 isner,John Isner,John,Isner,157,64,,0.79,0.57,0.18,0.4,0.26
-medve,Daniil Medvedev,Daniil,Medvedev,3,64,,0.75,0.53,0.35,0.56,0.43
 miche,Alex Michelsen,Alex,Michelsen,127,64,,0.74,0.46,0.27,0.4,0.32
 monfi,Gael Monfils,Gael,Monfils,162,64,,0.77,0.52,0.29,0.49,0.36
 murra,Andy Murray,Andy,Murray,37,64,,0.72,0.54,0.27,0.51,0.36
