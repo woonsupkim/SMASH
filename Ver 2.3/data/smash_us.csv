@@ -1,18 +1,18 @@
 ﻿id,name,first,last,wim_seed,wim_rd,wim_next,p1,p2,p3,p4,p5
-tiafo,Frances Tiafoe,Frances,Tiafoe,10,16,hijik,0.72,0.52,0.27,0.5,0.35
-hijik,Rinky Hijikata,Rinky,Hijikata,110,16,tiafo,0.66,0.45,0.29,0.48,0.35
-gojo,Borna Gojo,Borna,Gojo,105,16,djoko,0.78,0.43,0.27,0.52,0.37
-djoko,Novak Djokovic,Novak,Djokovic,2,16,gojo,0.79,0.59,0.32,0.57,0.42
-fritz,Taylor Fritz,Taylor,Fritz,9,16,,0.79,0.53,0.26,0.54,0.37
+tiafo,Frances Tiafoe,Frances,Tiafoe,10,8,shelt,0.72,0.52,0.27,0.5,0.35
+djoko,Novak Djokovic,Novak,Djokovic,2,8,fritz,0.79,0.59,0.32,0.57,0.42
+fritz,Taylor Fritz,Taylor,Fritz,9,8,djoko,0.79,0.53,0.26,0.54,0.37
+shelt,Ben Shelton,Ben,Shelton,47,8,tiafo,0.78,0.55,0.24,0.4,0.3
+alcar,Carlos Alcaraz,Carlos,Alcaraz,1,8,,0.73,0.57,0.34,0.5,0.41
+hijik,Rinky Hijikata,Rinky,Hijikata,110,16,,0.66,0.45,0.29,0.48,0.35
+gojo,Borna Gojo,Borna,Gojo,105,16,,0.78,0.43,0.27,0.52,0.37
 arnal,Matteo Arnaldi,Matteo,Arnaldi,61,16,alcar,0.69,0.48,0.25,0.46,0.35
-alcar,Carlos Alcaraz,Carlos,Alcaraz,1,16,arnal,0.73,0.57,0.34,0.5,0.41
 demin,Alex De Minaur,Alex,De Minaur,13,16,medve,0.73,0.52,0.35,0.53,0.42
 drape,Jack Draper,Jack,Draper,123,16,ruble,0.73,0.55,0.31,0.52,0.39
 ruble,Andrey Rublev,Andrey,Rublev,8,16,drape,0.76,0.49,0.29,0.49,0.36
 sinne,Jannik Sinner,Jannik,Sinner,6,16,zvere,0.77,0.54,0.32,0.56,0.41
 zvere,Alexander Zverev,Alexander,Zverev,12,16,sinne,0.74,0.47,0.26,0.49,0.35
 medve,Daniil Medvedev,Daniil,Medvedev,3,16,demin,0.75,0.53,0.35,0.56,0.43
-shelt,Ben Shelton,Ben,Shelton,47,32,,0.78,0.55,0.24,0.4,0.3
 karat,Aslan Karatsev,Aslan,Karatsev,77,32,,0.76,0.48,0.26,0.45,0.32
 manna,Adrian Mannarino,Adrian,Mannarino,35,32,,0.73,0.54,0.28,0.52,0.37
 bonzi,Benjamin Bonzi,Benjamin,Bonzi,108,32,,0.73,0.53,0.27,0.5,0.36
