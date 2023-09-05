@@ -10,7 +10,7 @@ server <- function(input, output, session) {
   # reactive variables to store sim values
   sim <- reactiveValues(
     i = 0, # simulation number
-    n = 200, # number of sims per batch
+    n = 1000, # number of sims per batch
     m = 0, # round of sim
     w = c(0,0), # matches won by A or B
     p = c(0,0), # points won by A or B
