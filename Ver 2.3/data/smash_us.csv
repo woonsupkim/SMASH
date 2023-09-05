@@ -3,8 +3,8 @@ tiafo,Frances Tiafoe,Frances,Tiafoe,10,8,shelt,0.72,0.52,0.27,0.5,0.35
 djoko,Novak Djokovic,Novak,Djokovic,2,8,fritz,0.79,0.59,0.32,0.57,0.42
 fritz,Taylor Fritz,Taylor,Fritz,9,8,djoko,0.79,0.53,0.26,0.54,0.37
 shelt,Ben Shelton,Ben,Shelton,47,8,tiafo,0.78,0.55,0.24,0.4,0.3
-alcar,Carlos Alcaraz,Carlos,Alcaraz,1,8,sinne,0.73,0.57,0.34,0.5,0.41
+alcar,Carlos Alcaraz,Carlos,Alcaraz,1,8,zvere,0.73,0.57,0.34,0.5,0.41
 ruble,Andrey Rublev,Andrey,Rublev,8,8,medve,0.76,0.49,0.29,0.49,0.36
-sinne,Jannik Sinner,Jannik,Sinner,6,8,alcar,0.77,0.54,0.32,0.56,0.41
-zvere,Alexander Zverev,Alexander,Zverev,12,16,sinne,0.74,0.47,0.26,0.49,0.35
+sinne,Jannik Sinner,Jannik,Sinner,6,16,alcar,0.77,0.54,0.32,0.56,0.41
+zvere,Alexander Zverev,Alexander,Zverev,12,8,alcar,0.74,0.47,0.26,0.49,0.35
 medve,Daniil Medvedev,Daniil,Medvedev,3,8,ruble,0.75,0.53,0.35,0.56,0.43
