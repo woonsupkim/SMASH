@@ -822,7 +822,7 @@ server <- function(input, output, session) {
               style = 'color:lime;',
               paste0(
                 ifelse(nrow(zA2) == 0, 'Player A', zA2$last),
-                ifelse(!is.na(zA2$wim_seed), paste0(' (', zA2$wim_seed, ')'), '')
+                ifelse(!is.na(zA2$us_seed), paste0(' (', zA2$us_seed, ')'), '')
               )
             )
           ),
@@ -866,7 +866,7 @@ server <- function(input, output, session) {
               style = 'color:magenta;',
               paste0(
                 ifelse(nrow(zB2) == 0, 'Player B', zB2$last),
-                ifelse(!is.na(zB2$wim_seed), paste0(' (', zB2$wim_seed, ')'), '')
+                ifelse(!is.na(zB2$us_seed), paste0(' (', zB2$us_seed, ')'), '')
               )
             )
           ),
