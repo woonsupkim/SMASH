@@ -697,7 +697,7 @@ server <- function(input, output, session) {
         z1 <- plyrsW %>%
           filter(name == input$plyrA2)
         z2 <- plyrsW %>%
-          filter(id == z1$wim_next)
+          filter(id == z1$us_next)
         plyr2$id[1] <- z1$id
         plyr2$id[2] <- z2$id
         plyr2$p[1,1] <- z1$p1
@@ -745,7 +745,7 @@ server <- function(input, output, session) {
         z1 <- plyrsW %>%
           filter(name == input$plyrB2)
         z2 <- plyrsW %>%
-          filter(id == z1$wim_next)
+          filter(id == z1$us_next)
         plyr2$id[2] <- z1$id
         plyr2$id[1] <- z2$id
         plyr2$p[1,1] <- z2$p1
