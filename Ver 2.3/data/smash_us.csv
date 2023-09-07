@@ -1,8 +1,8 @@
 ﻿id,name,first,last,us_seed,us_rd,us_next,p1,p2,p3,p4,p5
 djoko,Novak Djokovic,Novak,Djokovic,2,4,shelt,0.79,0.59,0.32,0.57,0.42
 shelt,Ben Shelton,Ben,Shelton,47,4,djoko,0.78,0.55,0.24,0.4,0.3
-alcar,Carlos Alcaraz,Carlos,Alcaraz,1,4,medve,0.71,0.56,0.33,0.53,0.41
-medve,Daniil Medvedev,Daniil,Medvedev,3,4,alcar,0.76,0.52,0.31,0.54,0.4
+alcar,Carlos Alcaraz,Carlos,Alcaraz,1,4,medve,0.73,0.57,0.34,0.5,0.41
+medve,Daniil Medvedev,Daniil,Medvedev,3,4,alcar,0.75,0.53,0.35,0.56,0.43
 tiafo,Frances Tiafoe,Frances,Tiafoe,10,8,,0.72,0.52,0.27,0.5,0.35
 fritz,Taylor Fritz,Taylor,Fritz,9,8,,0.79,0.53,0.26,0.54,0.37
 ruble,Andrey Rublev,Andrey,Rublev,8,8,,0.76,0.49,0.29,0.49,0.36
