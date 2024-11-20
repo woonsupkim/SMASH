@@ -1,9 +1,29 @@
 ﻿id,name,first,last,us_seed,us_rd,us_next,p1,p2,p3,p4,p5
-djoko,Novak Djokovic,Novak,Djokovic,2,2,medve,0.79,0.59,0.32,0.57,0.42
-medve,Daniil Medvedev,Daniil,Medvedev,3,2,djoko,0.75,0.53,0.35,0.56,0.43
-shelt,Ben Shelton,Ben,Shelton,47,4,,0.78,0.55,0.24,0.4,0.3
-alcar,Carlos Alcaraz,Carlos,Alcaraz,1,4,,0.73,0.57,0.34,0.5,0.41
-tiafo,Frances Tiafoe,Frances,Tiafoe,10,8,,0.72,0.52,0.27,0.5,0.35
-fritz,Taylor Fritz,Taylor,Fritz,9,8,,0.79,0.53,0.26,0.54,0.37
-ruble,Andrey Rublev,Andrey,Rublev,8,8,,0.76,0.49,0.29,0.49,0.36
-zvere,Alexander Zverev,Alexander,Zverev,12,8,,0.74,0.47,0.26,0.49,0.35
+fritz,Taylor Fritz,Taylor,Fritz,12,2,sinne,0.79,0.55,0.27,0.54,0.38
+sinne,Jannik Sinner,Jannik,Sinner,1,2,fritz,0.77,0.56,0.32,0.54,0.41
+drape,Jack Draper,Jack,Draper,25,4,,0.77,0.54,0.32,0.53,0.4
+tiafo,Frances Tiafoe,Frances,Tiafoe,20,4,,0.77,0.54,0.27,0.5,0.36
+zvere,Alexander Zverev,Alexander,Zverev,4,8,,0.73,0.5,0.28,0.5,0.36
+dimit,Grigor Dimitrov,Grigor,Dimitrov,9,8,,0.76,0.52,0.29,0.49,0.37
+demin,Alex Minaur,Alex,Minaur,10,8,,0.73,0.53,0.34,0.53,0.42
+medve,Daniil Medvedev,Daniil,Medvedev,5,8,,0.76,0.51,0.34,0.55,0.42
+hurka,Hubert Hurkacz,Hubert,Hurkacz,7,,,0.79,0.51,0.28,0.46,0.35
+djoko,Novak Djokovic,Novak,Djokovic,2,,,0.79,0.59,0.32,0.56,0.4
+shelt,Ben Shelton,Ben,Shelton,13,,,0.77,0.54,0.26,0.43,0.32
+jarry,Nicolas Jarry,Nicolas,Jarry,26,,,0.78,0.54,0.26,0.45,0.32
+ruble,Andrey Rublev,Andrey,Rublev,6,,,0.76,0.5,0.29,0.51,0.37
+alcar,Carlos Alcaraz,Carlos,Alcaraz,3,,,0.73,0.58,0.33,0.53,0.41
+navon,Mariano Navone,Mariano,Navone,37,,,0.67,0.56,0.19,0.4,0.28
+paul,Tommy Paul,Tommy,Paul,14,,,0.73,0.53,0.31,0.52,0.39
+baez,Sebastian Baez,Sebastian,Baez,21,,,0.63,0.48,0.26,0.49,0.35
+macha,Tomas Machac,Tomas,Machac,39,,,0.71,0.48,0.3,0.48,0.37
+munar,Jaume Munar,Jaume,Munar,82,,,0.69,0.44,0.25,0.44,0.33
+cerun,Francisco Cerundolo,Francisco,Cerundolo,29,,,0.67,0.49,0.3,0.51,0.38
+ruud,Casper Ruud,Casper,Ruud,8,,,0.72,0.52,0.28,0.5,0.36
+perri,Giovanni Perricard,Giovanni,Perricard,50,,,0.75,0.54,0.19,0.44,0.28
+marti,Pedro Martinez,Pedro,Martinez,43,,,0.66,0.51,0.2,0.49,0.32
+darde,Luciano Darderi,Luciano,Darderi,38,,,0.74,0.38,0.15,0.5,0.19
+bubli,Alexander Bublik,Alexander,Bublik,27,,,0.79,0.44,0.25,0.47,0.33
+berre,Matteo Berrettini,Matteo,Berrettini,44,,,0.8,0.5,0.27,0.45,0.34
+fils,Arthur Fils,Arthur,Fils,24,,,0.76,0.5,0.24,0.51,0.34
+van,Botic Van De Zandschulp,Botic,Van De Zandschulp,,,,0.7,0.47,0.31,0.5,0.37
